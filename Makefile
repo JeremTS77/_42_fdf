@@ -6,7 +6,7 @@
 #    By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/26 22:57:40 by aaubin            #+#    #+#              #
-#    Updated: 2013/12/18 22:25:31 by aaubin           ###   ########.fr        #
+#    Updated: 2013/12/18 22:26:29 by aaubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,7 @@ OBJ=$(addsuffix .o, $(NOM))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $^
-	ranlib $(NAME)
+	$(CC) -o $(NAME) $(INC_PATH) $^
 
 %.o: %.c
 	$(CC) $(LFLAGS) -g -o $@ -c $< $(CFLAGS)
