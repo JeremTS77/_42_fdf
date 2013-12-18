@@ -1,0 +1,6 @@
+fdf.*
+fdf_test
+ft_printf_test.c
+moulinette_printf.c
+a.out*
+*.autosave
