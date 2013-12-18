@@ -1,0 +1,9 @@
+*.swo
+test.sh
+Tests/*
+Tests/
+LAST
+.notes
+main_de_test.c
+*.autosave
+*.test.c
