@@ -10,14 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC=clang
-LKFLAGS=-Wall -Wextra -pedantic #-Werror
-CFLAGS=-Wall -Wextra -pedantic #-Werror
+CC=gcc
+LKFLAGS=-Wall -Wextra -pedantic -I./libft/includes -Werror \
+	-L/usr/X11/lib -lmlx -lXext -lX11 -L./libft -lft
+CFLAGS=-Wall -Wextra -pedantic -I./libft/includes -Werror
 LDFLAGS=-g
 NAME=fdf
 SRC=fd_fdf.c\
 	main.c\
-	ft_gnl.c
+	get_next_line.c
 	#ft_2d_coord.c\
 	#ft_2d_utils.c\
 	#ft_3d_utils.c\
@@ -31,7 +32,7 @@ OBJ=$(addsuffix .o, $(NOM))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(INC_PATH) $^
+	$(CC) -o $(NAME) $(INC_PATH) $^ $(LKFLAGS)
 
 %.o: %.c
 	$(CC) $(LFLAGS) -g -o $@ -c $< $(CFLAGS)
