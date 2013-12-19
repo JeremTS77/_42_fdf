@@ -12,7 +12,7 @@
 
 #include "ft_fdf.h"
 
-t_3d_p	ft_create_3d_point(double x, double y, double z)
+t_3d_p	ft_create_3d_point(float x, float y, float z)
 {
 	t_3d_p	p;
 
@@ -23,7 +23,7 @@ t_3d_p	ft_create_3d_point(double x, double y, double z)
 	return (p);
 }
 
-t_3d_p	ft_create_3d_point_from_2d(t_2d_p pdx, double z)
+t_3d_p	ft_create_3d_point_from_2d(t_2d_p pdx, float z)
 {
 	t_3d_p	p;
 
@@ -55,6 +55,7 @@ t_3d_p	*ft_convert_int_array(t_mesh *array)
 			printf("[c=%d]> creating point[%d, %d, %d]\n", pos, x, y, array->data[y][x]);
 			ret[pos] = ft_create_3d_point (
 					x * INTERVAL, y * INTERVAL, array->data[y][x]);
+			ret[pos] = ft_apply_matrix (ft_get_translation_matrix (200, 150, 1), ret[pos]);
 			x++;
 		}
 		y++;

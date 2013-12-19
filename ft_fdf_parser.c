@@ -83,6 +83,7 @@ t_mesh	*ft_parse_array(char *file)
 	int			c;
 	int			f;
 
+	c = 0;
 	mesh = ft_memalloc(sizeof(t_mesh *));
 	mesh->h = ft_count_rows (file);
 	mesh->data = (int **)ft_memalloc(sizeof(int **) * (mesh->h + 1));

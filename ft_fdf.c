@@ -19,6 +19,10 @@ void		ft_fdf_init(t_context *ct, char *file)
 	ct->height = 300;
 	ct->win = NULL;
 	ct->mlx = mlx_init ();
+	ct->mat = ft_memalloc(sizeof(t_mat4 *));
+	ft_copy_matrix (ct->mat, ft_create_4d_matrix ());
+	printf("\n======== vraiment au debut : =========\n");
+	ft_print_matrix (*(ct->mat));
 	ct->mesh = ft_parse_array (ct->filename);
 	ct->scene = ft_convert_int_array (ct->mesh);
 	if (ct->mlx != NULL)
@@ -32,34 +36,37 @@ void		ft_fdf_init(t_context *ct, char *file)
 
 void		ft_translate(int x, int y, t_context *ct)
 {
-	t_mat4	mat;
 	int		i;
+	t_3d_p	pt;
+	t_mat4	translation;
+	t_mat4	res;
 
-	mat = ft_get_translation_matrix (x, y, 0);
-	/*mlx_clear_window (ct->mlx, ct->win);*/
+	translation = ft_get_translation_matrix (x, y, 0);
+	printf("\n======== translation : =========\n");
+	ft_print_matrix (translation);
+	printf("\n======== la notre : =========\n");
+	ft_print_matrix (*(ct->mat));
+
+	res = ft_multiply_matrix ( translation, *(ct->mat));
+
+	ft_copy_matrix (ct->mat, res);
+
+	mlx_clear_window (ct->mlx, ct->win);
 	i = 0;
 
-	printf("====== matrice de translation =======\n");
-	ft_print_matrix (mat);
+	printf("====== resultat de translation =======\n");
+	ft_print_matrix (*(ct->mat));
+	pt = ft_create_3d_point (0, 0, 0);
 	while (i < (ct->mesh->w * ct->mesh->h))
 	{
-		ct->scene[i] = ft_apply_matrix (mat, ct->scene[i]);
-		printf("[%3.1f:%3.1f:%3.1f] ", ct->scene[i].x, ct->scene[i].y, ct->scene[i].z);
+		pt = ft_apply_matrix (translation, ct->scene[i]);
+		/*printf("[%3.1f:%3.1f:%3.1f] ", pt.x, pt.y, pt.z);
 		if ((i+1) % ct->mesh->w == 0)
 			printf("\n");
-		/*ft_print (ct->scene[i], 0xff00ff, ct);*/
+			*/
+		ft_print (pt, 0xff00ff, ct);
 		i++;
 	}
-	printf("\nEND\n");
-	/*
-	while (ct->scene[i] != NULL && i < (ct->mesh->w * ct->mesh->h))
-	{
-		printf("[U] printed : [%f, %f]\n", ct->scene[i].x, ct->scene[i].y);
-		ct->scene[i] = ft_apply_matrix (mat, ct->scene[i]);
-		ft_print (ct->scene[i], 0xff00ff, ct);
-		i++;
-	}
-	*/
 }
 
 void		ft_exit(t_context *ct)

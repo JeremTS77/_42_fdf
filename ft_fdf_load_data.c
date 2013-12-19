@@ -15,15 +15,17 @@
 void		ft_print_data(t_context *ct)
 {
 	int		i;
+	t_3d_p	pt;
+	t_mat4	id;
 
+	id = ft_create_4d_matrix ();
+	pt = ft_create_3d_point (0, 0, 0);
 	i = 0;
-	printf("======== initial ========\n");
 	while (i < (ct->mesh->w * ct->mesh->h))
 	{
-		printf("[%3.1f:%3.1f:%3.1f] ", ct->scene[i].x, ct->scene[i].y, ct->scene[i].z);
-		if ((i+1) % ct->mesh->w == 0)
-			printf("\n");
-		ft_print (ct->scene[i], LINE_COLOR, ct);
+		ft_print (pt, 0xff6666, ct);
+		pt = ft_apply_matrix (id, ct->scene[i]);
+		ft_print (pt, LINE_COLOR, ct);
 		i++;
 	}
 }
