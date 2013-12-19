@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_2d_coord.c                                      :+:      :+:    :+:   */
+/*   fd_fdf_load_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,18 @@
 
 #include "ft_fdf.h"
 
-t_2d_p	*ft_create_2d_point(int x, int y)
+void		ft_print_data(t_context *ct)
 {
-	t_2d_p	*p;
+	int		i;
 
-	p = ft_memalloc(sizeof(t_2d_p *));
-	if (p)
+	i = 0;
+	printf("======== initial ========\n");
+	while (i < (ct->mesh->w * ct->mesh->h))
 	{
-		p->x = x;
-		p->y = y;
+		printf("[%3.1f:%3.1f:%3.1f] ", ct->scene[i].x, ct->scene[i].y, ct->scene[i].z);
+		if ((i+1) % ct->mesh->w == 0)
+			printf("\n");
+		ft_print (ct->scene[i], LINE_COLOR, ct);
+		i++;
 	}
-	return (p);
 }

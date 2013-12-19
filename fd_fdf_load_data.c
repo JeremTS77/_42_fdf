@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_2d_coord.c                                      :+:      :+:    :+:   */
+/*   fd_fdf_load_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,3 @@
 
 #include "ft_fdf.h"
 
-t_2d_p	*ft_create_2d_point(int x, int y)
-{
-	t_2d_p	*p;
-
-	p = ft_memalloc(sizeof(t_2d_p *));
-	if (p)
-	{
-		p->x = x;
-		p->y = y;
-	}
-	return (p);
-}

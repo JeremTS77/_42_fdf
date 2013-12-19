@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_2d_coord.c                                      :+:      :+:    :+:   */
+/*   fd_fdf_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,36 @@
 
 #include "ft_fdf.h"
 
-t_2d_p	*ft_create_2d_point(int x, int y)
+void	ft_fdf_init(t_context *ct)
 {
-	t_2d_p	*p;
-
-	p = ft_memalloc(sizeof(t_2d_p *));
-	if (p)
+	ct->win = NULL;
+	ct->mlx = mlx_init ();
+	if (ct->mlx != NULL)
 	{
-		p->x = x;
-		p->y = y;
+		ct->win = mlx_new_window (ct->mlx, 600, 300, "fdf");
+		mlx_key_hook (ct->win, ft_fdf_key_hook, ct);
+		mlx_expose_hook (ct->win, ft_fdf_expose_hook, ct);
+		mlx_loop (ct->mlx);
 	}
-	return (p);
+}
+
+int		ft_fdf_key_hook(int keycode, t_context *ct)
+{
+	if (ct)
+	{
+		printf("pressed : %d\n", keycode);
+		if (keycode == 65307)
+			exit(0);
+	}
+	return (0);
+}
+
+
+int		ft_fdf_expose_hook(t_context *ct)
+{
+	if (ct)
+	{
+		return (0);
+	}
+	return (0);
 }
