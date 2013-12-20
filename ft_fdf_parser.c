@@ -72,6 +72,7 @@ t_mesh	*ft_add_readed_line(t_mesh *ret, char *buf, int index)
 	}
 	printf("}\n");
 	ret->w = ft_count_columns (elts);
+	printf("[MESH] [LARGEUR=%3d] [HAUTEUR=%3d]\n", ret->w, ret->h);
 	ret->data[index] = ft_convert_char_int (elts, ret->w);
 	return (ret);
 }
@@ -79,10 +80,14 @@ t_mesh	*ft_add_readed_line(t_mesh *ret, char *buf, int index)
 t_mesh	*ft_parse_array(char *file)
 {
 	t_mesh		*mesh;
-	char		*buf;
+	char			*buf;
 	int			c;
 	int			f;
+	int		x;
+	int		y;
 
+	x = 0;
+	y = 0;
 	c = 0;
 	mesh = ft_memalloc(sizeof(t_mesh *));
 	mesh->h = ft_count_rows (file);
@@ -90,10 +95,24 @@ t_mesh	*ft_parse_array(char *file)
 	f = open(file, O_RDONLY, 0644);
 	while (get_next_line (f, &buf) > 0)
 	{
-		printf("reading line [%s]\n", buf);
 		mesh = ft_add_readed_line (mesh, buf, c);
 		c++;
 		ft_putendl (buf);
 	}
+	printf("final data :\n\n");
+
+	while (y < (mesh->h))
+	{
+		x = 0;
+		while (x < (mesh->w))
+		{
+			printf("[%2d %2d](%2d) ", x, y, mesh->data[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	printf("\n\n");
+
 	return (mesh);
 }

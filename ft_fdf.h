@@ -19,7 +19,7 @@
 # include "get_next_line.h"
 
 # define		LINE_COLOR	0xffffff
-# define		INTERVAL		10
+# define		INTERVAL		20
 
 typedef struct		s_mesh
 {
@@ -36,16 +36,11 @@ typedef struct		s_2d_p
 
 typedef struct		s_3d_p
 {
-	float			x;
-	float			y;
-	float			z;
-	float			zz;
+	int			x;
+	int			y;
+	int			z;
+	int			zz;
 }					t_3d_p;
-
-typedef struct		s_mat4
-{
-	float			v[4][4];
-}					t_mat4;
 
 typedef struct		s_context
 {
@@ -56,7 +51,6 @@ typedef struct		s_context
 	int				height;
 	t_3d_p			*scene;
 	t_mesh			*mesh;
-	t_mat4			*mat;
 }					t_context;
 
 void		ft_fdf_init(t_context *ct, char *file);
@@ -73,22 +67,19 @@ t_mesh	*ft_add_readed_line(t_mesh *ret, char *buf, int index);
 
 void		ft_print_data(t_context *ct);
 
-t_mat4	ft_create_4d_matrix(void);
-t_mat4	ft_get_translation_matrix(float x, float y, float z);
-void		ft_print_matrix(t_mat4 mat);
-
-t_3d_p	ft_create_3d_point(float x, float y, float z);
-t_3d_p	ft_create_3d_point_from_2d(t_2d_p pdx, float z);
+t_3d_p	ft_create_3d_point(int x, int y, int z);
+t_3d_p	ft_create_3d_point_from_2d(t_2d_p pdx, int z);
 void		ft_print(t_3d_p p, unsigned int color, t_context *ct);
-t_3d_p	ft_apply_matrix(t_mat4 m, t_3d_p p);
-t_mat4	ft_multiply_matrix(t_mat4 ma, t_mat4 mb);
-void		ft_copy_matrix(t_mat4 *dest, t_mat4 src);
 
 t_3d_p	*ft_convert_int_array(t_mesh *array);
 void		ft_clear_array(t_3d_p **ret, int size);
 
 t_2d_p	*ft_create_2d_point(int x, int y);
+void		ft_2d_print(t_2d_p p, unsigned int color, t_context *ct);
+t_2d_p	ft_2d_from_3d(t_3d_p p);
 
 char		**ft_fdf_strsplit(char const *s, char c);
+int		ft_abs(int a);
+void		ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct);
 
 #endif /* !FT_FDF_H */
