@@ -25,12 +25,22 @@ t_2d_p	*ft_create_2d_point(int x, int y)
 	return (p);
 }
 
+t_2d_p	ft_apply_2d_transform(t_3d_p p)
+{
+	t_2d_p	np;
+	float	factor;
+
+	factor = 0.2;
+	np.x = (p.x * factor*3) - (p.y * factor*3) - (p.z / (16 * factor)) + (WIN_H / 2);
+	np.y = (p.x * factor*2) + (p.y * factor*2) - (p.z * (16 * factor)) - ((WIN_H * factor) - (100 * factor));
+	return (np);
+}
+
 t_2d_p	ft_2d_from_3d(t_3d_p p)
 {
 	t_2d_p	pp;
 
-	pp.x = 	p.x;
-	pp.y = 	p.y;
+	pp = ft_apply_2d_transform (p);
 	return (pp);
 }
 

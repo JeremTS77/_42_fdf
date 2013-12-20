@@ -12,12 +12,41 @@
 
 #include "ft_fdf.h"
 
+void		ft_print_grid(t_context *ct)
+{
+	int		i;
+	int		xi;
+	int		yi;
+	t_2d_p	pt;
+	t_2d_p	pt2;
+
+	i = 0;
+	xi = 0;
+	yi = 0;
+	while (i < ct->mesh->w * ct->mesh->h - 1)
+	{
+		xi = i % ct->mesh->w;
+		yi = i / ct->mesh->w;
+		printf("linking [%i] -> [%i]\n", i,i + 1);
+		pt = ft_2d_from_3d (ct->scene[i]);
+		pt2 = ft_2d_from_3d (ct->scene[i + 1]);
+		printf("pour le point %d, %d %% %d = %d", i, i, (ct->mesh->w - 1), (i) % (ct->mesh->w - 1));
+		if (i == 0 || (i + 1) % (ct->mesh->w) != 0)
+			ft_draw_line (pt, pt2, ct, LINE_COLOR);
+		if (yi < ct->mesh->h - 1)
+		{
+			pt2 = ft_2d_from_3d (ct->scene[i + ct->mesh->w]);
+			ft_draw_line (pt, pt2, ct, LINE_COLOR);
+		}
+		i++;
+	}
+}
+
 void		ft_print_data(t_context *ct)
 {
 	int		i;
 	t_2d_p	pt;
 
-	pt = ft_create_3d_point (0, 0, 0);
 	i = 0;
 	while (i < (ct->mesh->w * ct->mesh->h))
 	{
@@ -25,4 +54,5 @@ void		ft_print_data(t_context *ct)
 		ft_2d_print (pt, LINE_COLOR, ct);
 		i++;
 	}
+	ft_print_grid (ct);
 }

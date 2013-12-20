@@ -19,7 +19,9 @@
 # include "get_next_line.h"
 
 # define		LINE_COLOR	0xffffff
-# define		INTERVAL		20
+# define		WIN_H		1200
+# define		WIN_W		1900
+# define		INTERVAL		30
 
 typedef struct		s_mesh
 {
@@ -80,6 +82,6 @@ t_2d_p	ft_2d_from_3d(t_3d_p p);
 
 char		**ft_fdf_strsplit(char const *s, char c);
 int		ft_abs(int a);
-void		ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct);
+void		ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct, int color);
 
 #endif /* !FT_FDF_H */

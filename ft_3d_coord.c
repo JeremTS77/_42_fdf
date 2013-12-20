@@ -51,9 +51,10 @@ t_3d_p	*ft_convert_int_array(t_mesh *array)
 		x = 0;
 		while (x < (array->w))
 		{
-			printf("[c=%d]> creating point[%d, %d, %d]\n", pos, x, y, array->data[y][x]);
 			ret[pos] = ft_create_3d_point (
-					x * INTERVAL, y * INTERVAL, array->data[y][x]);
+					((WIN_W - (array->w * INTERVAL)) / 2) + x * INTERVAL,
+					((WIN_H - (array->h * INTERVAL)) / 2) + y * INTERVAL,
+					array->data[y][x]);
 			x++;
 			pos++;
 		}

@@ -15,8 +15,8 @@
 void		ft_fdf_init(t_context *ct, char *file)
 {
 	ct->filename = file;
-	ct->width = 600;
-	ct->height = 300;
+	ct->width = WIN_W;
+	ct->height = WIN_H;
 	ct->win = NULL;
 	ct->mlx = mlx_init ();
 	ct->mesh = ft_parse_array (ct->filename);

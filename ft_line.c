@@ -12,7 +12,7 @@
 
 #include "ft_fdf.h"
 
-void ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct)
+void ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct, int color)
 {
 	int	dx;
 	int	dy;
@@ -31,7 +31,7 @@ void ft_draw_line(t_2d_p p0, t_2d_p p1, t_context *ct)
 	err /= 2;
 	while (!done)
 	{
-		ft_2d_print (p0, 0x77ffbb, ct);
+		ft_2d_print (p0, color, ct);
 		if (p0.x == p1.x && p0.y == p1.y)
 			done = 1;
 		e2 = err;
