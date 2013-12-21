@@ -31,8 +31,10 @@ t_2d_p	ft_apply_2d_transform(t_3d_p p)
 	float	factor;
 
 	factor = 0.2;
-	np.x = (p.x * factor*3) - (p.y * factor*3) - (p.z / (16 * factor)) + (WIN_H / 2);
-	np.y = (p.x * factor*2) + (p.y * factor*2) - (p.z * (16 * factor)) - ((WIN_H * factor) - (100 * factor));
+	np.x = (p.x * factor*3) - (p.y * factor*3) - (p.z / (16 * factor))
+			+ (WIN_H / 2);
+	np.y = (p.x * factor*2) + (p.y * factor*2) - (p.z * (16 * factor))
+			- ((WIN_H * factor) - (100 * factor));
 	return (np);
 }
 

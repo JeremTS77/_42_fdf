@@ -36,9 +36,9 @@ char		*ft_fdf_group_char(char const *s, char c)
 
 int		ft_fdf_count_char(char const *s, char c)
 {
-	int	len;
-	int	counter;
-	int	count;
+	int		len;
+	int		counter;
+	int		count;
 
 	if (s == NULL)
 		return (0);
@@ -85,8 +85,9 @@ char		*ft_fdf_strchartrim(char const *s, char ch)
 
 char		*ft_fdf_strsub(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	counter;
-	char			*dest;
+	unsigned int		counter;
+	char				*dest;
+
 	if (s == NULL)
 		return (NULL);
 	dest = ft_strnew (len + 1);
@@ -96,9 +97,7 @@ char		*ft_fdf_strsub(char const *s, unsigned int start, size_t len)
 	while (counter < len + start)
 	{
 		if (counter >= start)
-		{
 			dest[counter - start] = s[counter];
-		}
 		counter++;
 	}
 	return (dest);

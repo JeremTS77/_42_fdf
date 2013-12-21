@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_3d_coord.c                                      :+:      :+:    :+:   */
+/*   ft_3d_coord.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -44,7 +44,6 @@ t_3d_p	*ft_convert_int_array(t_mesh *array)
 	x = 0;
 	y = 0;
 	pos = 0;
-	printf("Waouh ! On a un tableau de (h)%d x (W)%d!\n", array->h, array->w);
 	ret = ft_memalloc(sizeof(t_3d_p *) * (array->h * array->w + 1));
 	while (y < (array->h))
 	{
@@ -60,23 +59,6 @@ t_3d_p	*ft_convert_int_array(t_mesh *array)
 		}
 		y++;
 	}
-	x = 0;
-	pos = 0;
-	y = 0;
-	printf("\n================ RES VALUES ================\n");
-	while (y < (array->h))
-	{
-		x = 0;
-		while (x < (array->w))
-		{
-
-			printf("[%2d %2d](%2d) ", ret[pos].x, ret[pos].y, ret[pos].z);
-			x++;
-			pos++;
-		}
-		printf("\n");
-		y++;
-	}
 	return (ret);
 }
 
@@ -89,10 +71,10 @@ void		ft_clear_array(t_3d_p **ret, int size)
 	*ret = NULL;
 }
 
-void		ft_print(t_3d_p p, unsigned int color, t_context *ct)
+void		ft_3d_print(t_3d_p p, unsigned int color, t_context *ct)
 {
-		if (p.x > 0 && p.x < ct->width && p.y > 0 && p.y < ct->height)
-		{
-			mlx_pixel_put(ct->mlx, ct->win, p.x, p.y, color);
-		}
+	if (p.x > 0 && p.x < ct->width && p.y > 0 && p.y < ct->height)
+	{
+		mlx_pixel_put(ct->mlx, ct->win, p.x, p.y, color);
+	}
 }

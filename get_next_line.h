@@ -27,13 +27,13 @@
 ** Will add [len] first characters of [courant] string to [line],
 ** and reallocate [line] if necessary.
 */
-void	ft_add_line(char **line, char **bubu, long len);
+void	ft_add_line(char **line, char **buf, long len);
 
 /*
 ** Will process the read (@see 'man 3 read') loop, wich will read to the
 ** buffer [courant] [BUFF_SIZE] characters, and add them to [line].
 */
-void	ft_process_loop(int const *fd, char **line, char **bubu, long *res);
+void	ft_process_loop(int const *fd, char **line, char **buf, long *res);
 
 /*
 ** Will return the next line on the given file descriptor.

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_fdf.c                                           :+:      :+:    :+:   */
+/*   ft_fdf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,43 +30,6 @@ void		ft_fdf_init(t_context *ct, char *file)
 	}
 }
 
-void		ft_translate(int x, int y, t_context *ct)
-{
-	int		i;
-	t_3d_p	pt;
-	int	ix, iy, pos;
-
-	i = 0;
-
-	pt = ft_create_3d_point (0, 0, 0);
-	ix = 0;
-	pos = 0;
-	iy = 0;
-	printf("\n================ RES VALUES ================\n");
-	while (iy < (ct->mesh->h))
-	{
-		ix = 0;
-		while (ix < (ct->mesh->w))
-		{
-
-			printf("[%2d %2d](%2d) ", ct->scene[pos].x, ct->scene[pos].y, ct->scene[pos].z);
-			ix++;
-			pos++;
-		}
-		printf("\n");
-		iy++;
-	}
-	while (i < (ct->mesh->w * ct->mesh->h))
-	{
-		pt = ct->scene[i];
-		pt.x += x;
-		pt.y += y;
-		ft_print (pt, 0xff7799, ct);
-		ct->scene[i] = pt;
-		i++;
-	}
-}
-
 void		ft_exit(t_context *ct)
 {
 	ft_clear_array(&(ct->scene), (ct->mesh->w * ct->mesh->h));
@@ -79,11 +42,8 @@ int		ft_fdf_key_hook(int keycode, t_context *ct)
 {
 	if (ct)
 	{
-		printf("pressed : %d\n", keycode);
 		if (keycode == 65307)
-		{
 			ft_exit (ct);
-		}
 	}
 	return (0);
 }

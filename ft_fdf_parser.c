@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_fdf_parser.c                                    :+:      :+:    :+:   */
+/*   ft_fdf_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -50,7 +50,6 @@ int		*ft_convert_char_int(char **elts, int count)
 	while (c < count)
 	{
 		tmp = ft_atoi(elts[c]);
-		printf("converting [%s] to [%i]...\n", elts[c], tmp);
 		line[c] = tmp;
 		c++;
 	}
@@ -59,20 +58,14 @@ int		*ft_convert_char_int(char **elts, int count)
 
 t_mesh	*ft_add_readed_line(t_mesh *ret, char *buf, int index)
 {
-	char	**elts;
+	char		**elts;
 	int		c;
 
 	c = 0;
 	elts = ft_fdf_strsplit(buf, ' ');
-	printf("split : {");
 	while (elts[c] != NULL)
-	{
-		printf("%s,", elts[c]);
 		c++;
-	}
-	printf("}\n");
 	ret->w = ft_count_columns (elts);
-	printf("[MESH] [LARGEUR=%3d] [HAUTEUR=%3d]\n", ret->w, ret->h);
 	ret->data[index] = ft_convert_char_int (elts, ret->w);
 	return (ret);
 }
@@ -83,11 +76,7 @@ t_mesh	*ft_parse_array(char *file)
 	char			*buf;
 	int			c;
 	int			f;
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
 	c = 0;
 	mesh = ft_memalloc(sizeof(t_mesh *));
 	mesh->h = ft_count_rows (file);
@@ -99,20 +88,5 @@ t_mesh	*ft_parse_array(char *file)
 		c++;
 		ft_putendl (buf);
 	}
-	printf("final data :\n\n");
-
-	while (y < (mesh->h))
-	{
-		x = 0;
-		while (x < (mesh->w))
-		{
-			printf("[%2d %2d](%2d) ", x, y, mesh->data[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("\n\n");
-
 	return (mesh);
 }

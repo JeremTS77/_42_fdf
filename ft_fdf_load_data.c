@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_fdf_load_data.c                                 :+:      :+:    :+:   */
+/*   ft_fdf_load_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaubin <aaubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,10 +27,8 @@ void		ft_print_grid(t_context *ct)
 	{
 		xi = i % ct->mesh->w;
 		yi = i / ct->mesh->w;
-		printf("linking [%i] -> [%i]\n", i,i + 1);
 		pt = ft_2d_from_3d (ct->scene[i]);
 		pt2 = ft_2d_from_3d (ct->scene[i + 1]);
-		printf("pour le point %d, %d %% %d = %d", i, i, (ct->mesh->w - 1), (i) % (ct->mesh->w - 1));
 		if (i == 0 || (i + 1) % (ct->mesh->w) != 0)
 			ft_draw_line (pt, pt2, ct, LINE_COLOR);
 		if (yi < ct->mesh->h - 1)
