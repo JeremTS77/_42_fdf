@@ -32,7 +32,18 @@ SRC=ft_fdf.c\
 NOM=$(basename $(SRC))
 OBJ=$(addsuffix .o, $(NOM))
 
-all: $(NAME)
+all: makelib normal
+
+normal: $(NAME)
+
+makelib:
+	@make -f Makefile -C libft
+
+cleanlib:
+	@make -f Makefile -C libft clean
+
+fcleanlib:
+	@make -f Makefile -C libft fclean
 
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(INC_PATH) $^ $(LKFLAGS)
@@ -40,12 +51,12 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) $(LFLAGS) -g -o $@ -c $< $(CFLAGS)
 
-clean:
+clean: cleanlib
 	@rm -rf $(OBJ)
 
-fclean: clean mrproper
+fclean: clean fcleanlib mrproper
 
-re: fclean all
+re: fclean fcleanlib all
 
 .PHONY: clean mrproper
 
